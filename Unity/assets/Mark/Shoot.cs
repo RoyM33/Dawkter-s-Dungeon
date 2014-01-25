@@ -4,7 +4,7 @@ using System.Collections;
 public class Shoot : MonoBehaviour
 {
 
-    public double timebetweenshots = .1;
+    public double timebetweenshots = 1;
     private double lastfiretime = 0;
     public GameObject Bullet;
     private PlayerCharacter _player;
