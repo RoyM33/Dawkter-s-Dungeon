@@ -27,14 +27,14 @@ public class PlayerCamera : MonoBehaviour
     {
         if (Player.ViewOption == PlayerViewOptions.TopDown)
         {
-            TargetCameraObject = FirstPersonCameraDock;
-            FromCameraObject = TopDownCameraDock;
-        }
-        else
-        {
             TargetCameraObject = TopDownCameraDock;
             CameraMouseLook.enabled = false;
             FromCameraObject = FirstPersonCameraDock;
+        }
+        else
+        {
+            TargetCameraObject = FirstPersonCameraDock;
+            FromCameraObject = TopDownCameraDock;
         }
 
         if (this.transform.position != TargetCameraObject.transform.position)

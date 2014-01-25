@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="assets\Mark\Shoot.cs" />
      <Compile Include="assets\Roy\GlobalObjectUpdating.cs" />
      <Compile Include="assets\Roy\SpawnEnemies.cs" />
      <Compile Include="assets\Trey\Character.cs" />
