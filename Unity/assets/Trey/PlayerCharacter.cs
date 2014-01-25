@@ -16,7 +16,7 @@ public class PlayerCharacter : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (ViewOption == PlayerViewOptions.TopDown)
             {
