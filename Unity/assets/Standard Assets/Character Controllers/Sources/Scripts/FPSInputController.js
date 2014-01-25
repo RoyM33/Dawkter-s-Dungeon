@@ -31,11 +31,6 @@ function Update () {
 	motor.inputMoveDirection = transform.rotation * directionVector;
 	motor.inputJump = Input.GetButton("Jump");
 	
-	if(Input.GetButton("Fire1") == true)
-	{
-		motor.inputJump = true;
-	}
-	
 }
 
 // Require a character controller to be attached to the same game object

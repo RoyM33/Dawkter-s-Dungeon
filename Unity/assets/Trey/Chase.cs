@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Chase : MonoBehaviour
@@ -19,4 +19,12 @@ public class Chase : MonoBehaviour
     {
         _agent.destination = Target.transform.position;
     }
+	
+	void OnTriggerEnter (Collider other)
+	{
+		if (other.name.Equals("Bullet(Clone)"))
+		{
+			Destroy(this.gameObject);
+		}
+	}
 }
