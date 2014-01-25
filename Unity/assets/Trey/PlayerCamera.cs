@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerCamera : MonoBehaviour
 {
-
     public GameObject FirstPersonCameraDock;
     public GameObject TopDownCameraDock;
     public PlayerCharacter Player;
@@ -19,7 +18,7 @@ public class PlayerCamera : MonoBehaviour
         TargetCameraObject = FirstPersonCameraDock;
         FromCameraObject = TopDownCameraDock;
 
-        CameraMouseLook = GetComponent<MouseLook>();        
+        CameraMouseLook = GetComponent<MouseLook>();
     }
 
     // Update is called once per frame
@@ -42,7 +41,7 @@ public class PlayerCamera : MonoBehaviour
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, TargetCameraObject.transform.rotation, Time.deltaTime * CameraTransitionSpeed);
             this.transform.position = Vector3.Slerp(this.transform.position, TargetCameraObject.transform.position, Time.deltaTime * CameraTransitionSpeed);
 
-            if (this.transform.position == TargetCameraObject.transform.position && TargetCameraObject == FirstPersonCameraDock)
+            if (Vector3.Distance(this.transform.position, TargetCameraObject.transform.position) < .5f && TargetCameraObject == FirstPersonCameraDock)
             { // Destination Reached
                 CameraMouseLook.enabled = true;
             }
