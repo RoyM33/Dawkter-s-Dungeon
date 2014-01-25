@@ -11,6 +11,8 @@ public class Dash : MonoBehaviour
     public float DelayBeforeDashInSeconds = .5f;
     public float DashSpeed = 5f;
 
+    public DashState DashState = DashState.NotCloseEnoughToDash;
+
     private NavMeshAgent _agent;
     private bool DashStarted;
     private bool DashCharging;
@@ -38,14 +40,6 @@ public class Dash : MonoBehaviour
             {
                 DashStarted = true;
                 DashCharging = false;
-
-
-                //_agent.enabled = true;
-                //_agent.destination = Target.transform.position + Target.transform.position.normalized * DashRange;
-                //_agent.speed = 500;
-                //_agent.acceleration = 500;
-                //_agent.angularSpeed = 500;
-                //_agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
             }
         }
         else if (DashStarted)
@@ -72,8 +66,14 @@ public class Dash : MonoBehaviour
 
                 _agent.enabled = false;
             }
-        }
-
-        //_agent.destination = Target.transform.position;	    
+        }  
     }
+}
+
+public enum DashState
+{
+    NotCloseEnoughToDash,
+    ChargingDash,
+    Dashing,
+    Dashed
 }
