@@ -46,9 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="assets\Roy\GlobalObjectUpdating.cs" />
      <Compile Include="assets\Roy\SpawnEnemies.cs" />
      <Compile Include="assets\Trey\Character.cs" />
      <Compile Include="assets\Trey\Chase.cs" />
+     <Compile Include="assets\Trey\Dash.cs" />
      <Compile Include="assets\Trey\Game.cs" />
      <Compile Include="assets\Trey\PlayerCamera.cs" />
      <Compile Include="assets\Trey\PlayerCharacter.cs" />

@@ -35,7 +35,6 @@ public class PlayerCamera : MonoBehaviour
             TargetCameraObject = TopDownCameraDock;
             CameraMouseLook.enabled = false;
             FromCameraObject = FirstPersonCameraDock;
-
         }
 
         if (this.transform.position != TargetCameraObject.transform.position)
