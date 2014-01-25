@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerCharacter : Character
 {
-    public PlayerViewOptions ViewOption = PlayerViewOptions.OverTheShoulder;
+    public PlayerViewOptions ViewOption = PlayerViewOptions.TopDown;
 
     private CharacterMotor _motor;
 
@@ -18,21 +18,28 @@ public class PlayerCharacter : Character
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (ViewOption == PlayerViewOptions.TopDown)            
+            if (ViewOption == PlayerViewOptions.TopDown)
             {
                 ViewOption = PlayerViewOptions.OverTheShoulder;
-                _motor.movement.maxBackwardsSpeed = 5;
-                _motor.movement.maxForwardSpeed = 5;
-                _motor.movement.maxSidewaysSpeed = 5;
             }
             else
             {
                 ViewOption = PlayerViewOptions.TopDown;
-                _motor.movement.maxBackwardsSpeed = 20;
-                _motor.movement.maxForwardSpeed = 20;
-                _motor.movement.maxSidewaysSpeed = 20;
             }
-         }
+        }
+
+        if (ViewOption == PlayerViewOptions.TopDown)
+        {
+            _motor.movement.maxBackwardsSpeed = 20;
+            _motor.movement.maxForwardSpeed = 20;
+            _motor.movement.maxSidewaysSpeed = 20;
+        }
+        else
+        {
+            _motor.movement.maxBackwardsSpeed = 5;
+            _motor.movement.maxForwardSpeed = 5;
+            _motor.movement.maxSidewaysSpeed = 5;
+        }
     }
 
     void OnGUI()
