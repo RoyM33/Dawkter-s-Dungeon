@@ -3,12 +3,14 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="assets\Standard Assets\Character Controllers\Sources\Scripts\BulletMove.cs">
     <Files>
       <File FileName="assets\Trey\Chase.cs" Line="1" Column="1" />
-      <File FileName="assets\Standard Assets\Character Controllers\Sources\Scripts\BulletMove.cs" Line="11" Column="2" />
-      <File FileName="assets\Trey\Dash.cs" Line="8" Column="5" />
-      <File FileName="assets\lookatPlayer.cs" Line="6" Column="2" />
-      <File FileName="assets\Trey\Character.cs" Line="12" Column="1" />
-      <File FileName="assets\FlyingFire.cs" Line="19" Column="18" />
-      <File FileName="assets\Mark\ShootEnemy.cs" Line="30" Column="64" />
+      <File FileName="assets\Standard Assets\Character Controllers\Sources\Scripts\BulletMove.cs" Line="8" Column="48" />
+      <File FileName="assets\Trey\Dash.cs" Line="56" Column="1" />
+      <File FileName="assets\lookatPlayer.cs" Line="20" Column="6" />
+      <File FileName="assets\Trey\Character.cs" Line="14" Column="17" />
+      <File FileName="assets\FlyingFire.cs" Line="50" Column="12" />
+      <File FileName="assets\Mark\ShootEnemy.cs" Line="27" Column="35" />
+      <File FileName="assets\Trey\PlayerCharacter.cs" Line="50" Column="25" />
+      <File FileName="c:\Users\Stick100\Documents\Dawkter-s-Dungeon2\Unity\assets\Roy\StartSpawning.cs" Line="20" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
