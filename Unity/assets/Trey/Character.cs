@@ -37,6 +37,8 @@ public class Character : MonoBehaviour
                 damaged();
             if (Health < 0)
             {
+				var clone2  = Instantiate(GameObject.Find("EnemyDeathJuice"),other.transform.position,other.transform.rotation);
+				Destroy(clone2, .5f);
                 Destroy(this.gameObject);
             }
         }
