@@ -35,8 +35,11 @@ public class StartSpawning : MonoBehaviour {
         {
             if (objectEntering.tag == "Player")
             {
-                _spawnEnemies.StartSpawning(timeToWaitForSpawning, numberToSpawn);
-                _startSpawning = true;
+                if (_spawnEnemies)
+                {
+                    _spawnEnemies.StartSpawning(timeToWaitForSpawning, numberToSpawn);
+                    _startSpawning = true;
+                }
             }
         }
     }
