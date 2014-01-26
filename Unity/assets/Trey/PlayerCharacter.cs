@@ -46,8 +46,17 @@ public class PlayerCharacter : Character
     {
         GUI.Box(new Rect(0, 0, Screen.width * Health / 100, 30), Health.ToString());
     }
-}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.name.Equals("Bullet(Clone)"))
+		{
+			Health -= 8;//10 shots to kill
+
+		}
+	}
+
+}
 
 public enum PlayerViewOptions
 {
