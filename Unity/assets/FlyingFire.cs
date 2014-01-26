@@ -6,8 +6,8 @@ public class FlyingFire : MonoBehaviour {
 	public float chargeTime = 3.5f;
 	private float timeFromCharge = 0.0f;
 	public Light light1;
-	public Light light2;
-	public Light light3;
+	//public Light light2;
+	//public Light light3;
 	public AudioSource audio;
 
 	private Transform lookatTarget;
@@ -43,8 +43,8 @@ public class FlyingFire : MonoBehaviour {
 			timeFromCharge = chargeTime;
 		}
 		light1.intensity = 8* (timeFromCharge/chargeTime);
-		light2.intensity = 8* (timeFromCharge/chargeTime);
-		light3.intensity = 8* (timeFromCharge/chargeTime);
+		//light2.intensity = 8* (timeFromCharge/chargeTime);
+		//light3.intensity = 8* (timeFromCharge/chargeTime);
 		audio.pitch = 1.2f * (timeFromCharge/chargeTime);
 		audio.volume = .5f * (timeFromCharge/chargeTime);
 		if(timeFromCharge == chargeTime)
