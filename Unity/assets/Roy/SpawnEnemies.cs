@@ -3,8 +3,9 @@ using System.Collections;
 
 public class SpawnEnemies : MonoBehaviour
 {
-
-    public float spawnTimerInSeconds = 1;
+    public float _spawnDelayTime = 0;
+    public float spawnTimerBetweenStart = 1;
+    public float spawnTimerBetweenEnd = 3;
     private float _timeElapsed = 0;
     public float _maxRangeRadius;
     public float _minRangeRadius;
@@ -18,15 +19,16 @@ public class SpawnEnemies : MonoBehaviour
     {
         if (started)
         {
+
             if (enemiesLeft > 0)
             {
                 _timeElapsed += Time.deltaTime;
-                if (_timeElapsed >= spawnTimerInSeconds)
+                if (_timeElapsed >= _spawnDelayTime)
                 {
                     enemiesLeft--;
                     SpawnEnemy();
                     _timeElapsed = 0;
-                    spawnTimerInSeconds = Random.Range(1, 3);
+                    _spawnDelayTime = Random.Range(spawnTimerBetweenStart, spawnTimerBetweenEnd);
                 }
             }
             else
@@ -39,6 +41,13 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
+    public void StartSpawning(int timeToWait, int numberToSpawn)
+    {
+        enemiesLeft = numberToSpawn;
+        _spawnDelayTime = timeToWait;
+        this.started = true;
+    }
+
     private void SpawnEnemy()
     {
        var randomPointInsideCircle = Random.insideUnitSphere * _maxRangeRadius;
@@ -49,7 +58,7 @@ public class SpawnEnemies : MonoBehaviour
             possibleNewLocation = new Vector3(this.transform.position.x + randomPointInsideCircle.x, this.transform.position.y, this.transform.position.z + randomPointInsideCircle.y);
         }
         Debug.Log("spawning enemies");
-        //var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length - 1);
+        var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length - 1);
         Instantiate(enemyPrefab[0], possibleNewLocation, transform.rotation);
     }
 

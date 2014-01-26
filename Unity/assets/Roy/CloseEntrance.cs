@@ -19,12 +19,11 @@ public class CloseEntrance : MonoBehaviour {
 
     void OnTriggerEnter(Collider objectColliding)
     {
-        Debug.Log("entered");
         if (objectColliding.tag == "Player")
         {
             parentBox.enabled = true;
             parentMesh.enabled = true;
-            GameObject.Destroy(this.gameObject);
+            GameObject.Destroy(this.gameObject, 1);
         }
     }
 }

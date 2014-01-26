@@ -1,0 +1,11 @@
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\UnityEditor.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\UnityEngine.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\nunit.framework.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\obj\Debug\Assembly-CSharp-firstpass-vs.csprojResolveAssemblyReference.cache
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\svc-student\Documents\Dawkter-s-Dungeon\Unity\obj\Debug\Assembly-CSharp-firstpass.pdb
