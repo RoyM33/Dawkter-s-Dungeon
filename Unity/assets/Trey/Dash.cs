@@ -19,6 +19,7 @@ public class Dash : MonoBehaviour
     private float DashTimeElapsed;
 
     private static AudioClip _onDashSound;
+    private static AudioClip _onChargeDashSound;
 
     // Use this for initialization
     void Start()
@@ -31,6 +32,10 @@ public class Dash : MonoBehaviour
         if (_onDashSound == null)
         {
             _onDashSound = Resources.Load<AudioClip>("Sounds/onDash");
+        }
+        if (_onChargeDashSound == null)
+        {
+            _onChargeDashSound = Resources.Load<AudioClip>("Sounds/onChargeDash");
         }
     }
 
@@ -53,6 +58,7 @@ public class Dash : MonoBehaviour
                     _agent.enabled = false;
 
                     _dashState = DashState.ChargingDash;
+                    audio.PlayOneShot(_onChargeDashSound);
                 }
                 break;
 
