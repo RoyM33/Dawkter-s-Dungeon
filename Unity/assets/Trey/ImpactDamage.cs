@@ -20,6 +20,8 @@ public class ImpactDamage : MonoBehaviour
         {
             _onHitSound = Resources.Load<AudioClip>("Sounds/onDashHit");
         }
+
+        this.EnsureComponent<AudioSource>();
     }
 
     // Update is called once per frame
