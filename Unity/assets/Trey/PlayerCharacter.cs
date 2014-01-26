@@ -7,6 +7,9 @@ public class PlayerCharacter : Character
 
     private CharacterMotor _motor;
 
+    public float TopDownSpeed = 15;
+    public float FirstPersonSpeed = 8;
+
     // Use this for initialization
     void Start()
     {
@@ -30,15 +33,15 @@ public class PlayerCharacter : Character
 
         if (ViewOption == PlayerViewOptions.TopDown)
         {
-            _motor.movement.maxBackwardsSpeed = 20;
-            _motor.movement.maxForwardSpeed = 20;
-            _motor.movement.maxSidewaysSpeed = 20;
+            _motor.movement.maxBackwardsSpeed = TopDownSpeed;
+            _motor.movement.maxForwardSpeed = TopDownSpeed;
+            _motor.movement.maxSidewaysSpeed = TopDownSpeed;
         }
         else
         {
-            _motor.movement.maxBackwardsSpeed = 5;
-            _motor.movement.maxForwardSpeed = 5;
-            _motor.movement.maxSidewaysSpeed = 5;
+            _motor.movement.maxBackwardsSpeed = FirstPersonSpeed;
+            _motor.movement.maxForwardSpeed = FirstPersonSpeed;
+            _motor.movement.maxSidewaysSpeed = FirstPersonSpeed;
         }
     }
 
