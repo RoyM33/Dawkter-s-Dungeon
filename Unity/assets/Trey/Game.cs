@@ -57,11 +57,6 @@ public class Game : MonoBehaviour
 
     void OnGUI()
     {
-        if (_gameState == GameState.Win)
-        {
-            GUI.DrawTexture(new Rect(0, 0, 327, 191), YouWinTexture);
-        }
-
         switch (_gameState)
         {
             case GameState.Intro:
@@ -70,17 +65,17 @@ public class Game : MonoBehaviour
 
 
             case GameState.InProgress:
-
+                
                 break;
 
 
             case GameState.Win:
-                GUI.DrawTexture(new Rect(0, 0, 327, 191), YouWinTexture);
+                YouWinTexture.DrawCentered();
                 break;
 
 
             case GameState.Lose:
-                GUI.DrawTexture(new Rect(0, 0, 372, 191), YouLoseTexture);
+                YouLoseTexture.DrawCentered();
                 break;
         }
     }
