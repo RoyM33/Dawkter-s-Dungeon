@@ -18,6 +18,8 @@ public class Dash : MonoBehaviour
     private Vector3 DashLocation;
     private float DashTimeElapsed;
 
+    private static AudioClip _onDashSound;
+
     // Use this for initialization
     void Start()
     {
@@ -25,6 +27,11 @@ public class Dash : MonoBehaviour
 
         if (Target == null)
             Target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
+        
+        if (_onDashSound == null)
+        {
+            _onDashSound = Resources.Load<AudioClip>("Sounds/onDash");
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +61,7 @@ public class Dash : MonoBehaviour
                 if (DashTimeElapsed > DelayBeforeDashInSeconds)
                 {
                     _dashState = DashState.Dashing;
+                    audio.PlayOneShot(_onDashSound);
                 }
                 break;
 
