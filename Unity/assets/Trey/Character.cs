@@ -8,11 +8,13 @@ public class Character : MonoBehaviour
     public float Health = 100;
     public Action damaged;
     public float maxHealth = 100;
+	private PlayerCharacter _player;
     // Use this for initialization
     void Start()
     {
         if (Health > maxHealth)
             maxHealth = Health;
+		_player = GameObject.FindWithTag("Player").GetComponent<PlayerCharacter>();
     }
     // Update is called once per frame
     void Update()
@@ -24,6 +26,9 @@ public class Character : MonoBehaviour
     {
         if (other.name.Equals("Bullet(Clone)"))
         {
+			Destroy(other.gameObject);
+			//AudioSource[] audios = _player.GetComponents<AudioSource>();
+			//audios[2];
             Health -= 10.01f;//10 shots to kill
             if (damaged != null)
                 damaged();
