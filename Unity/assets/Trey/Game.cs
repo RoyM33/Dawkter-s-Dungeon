@@ -116,15 +116,28 @@ public class Game : MonoBehaviour
 
         _gameState = GameState.Win;
         Time.timeScale = 0;
+
+        StartCoroutine(WaitAndReload());
     }
 
+    IEnumerator WaitAndReload()
+    {
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + 8f)
+        {
+            yield return null;
+        }
+        Application.LoadLevel(0);
+    }
 
     IEnumerator WaitAndLose()
     {
         yield return new WaitForSeconds(2);
 
         _gameState = GameState.Lose;
-        Time.timeScale = 0;
+        Time.timeScale = 0; 
+        
+        StartCoroutine(WaitAndReload());
     }
 
     void OnGUI()
