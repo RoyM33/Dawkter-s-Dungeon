@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     private Texture Ready2;
     private Texture Ready3;
 
+    private Character Boss;
 
     private AudioClip _onLoseSound;
 
@@ -57,6 +58,7 @@ public class Game : MonoBehaviour
         {
             case GameState.Intro:
 
+
                 if (TimeSinceStart > 4)
                 {
                     Time.timeScale = 1;
@@ -71,16 +73,45 @@ public class Game : MonoBehaviour
                     _gameState = GameState.Lose;
                     audio.PlayOneShot(_onLoseSound);
                 }
+
+
+                if (Boss == null)
+                {
+                    var bossObj = GameObject.FindGameObjectWithTag("Boss");
+                    if (bossObj)
+                        Boss = bossObj.GetComponent<Character>();
+                }
+                else
+                {
+                    if (!won && Boss.Health <= 0)
+                    {
+                        won = true;
+                        StartCoroutine(WaitAndWin());
+                    }
+                }
+
+
                 break;
 
 
             case GameState.Win:
+
                 break;
 
 
             case GameState.Lose:
                 break;
         }
+    }
+
+    private bool won = false;
+
+    IEnumerator WaitAndWin()
+    {
+        yield return new WaitForSeconds(2);
+
+        _gameState = GameState.Win;
+        Time.timeScale = 0;
     }
 
     void OnGUI()
