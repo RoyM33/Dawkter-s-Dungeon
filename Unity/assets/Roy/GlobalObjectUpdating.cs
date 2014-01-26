@@ -11,8 +11,16 @@ public class GlobalObjectUpdating : MonoBehaviour {
         get { return _currentColor; }
         set
         {
+            var normalColor = _playerColorObjects.FirstOrDefault(item => item.name == "NormalColor");
+            if (normalColor)
+            {
+                normalColor.SetActive(false);
+                _playerColorObjects.Remove(normalColor);
+            }
+
             startBlinking = true;
-            _currentColor = value; 
+            _currentColor = value;
+            ChangePlayerColor(value);
             switch (value)
             {
                 case Colors.red:
@@ -60,11 +68,19 @@ public class GlobalObjectUpdating : MonoBehaviour {
     private List<GameObject> _yellowObjects=new List<GameObject>();
     public float flashIntervals = .5f;
     private float currentInterval = 0;
+    private List<GameObject> _playerColorObjects =  new List<GameObject>();
 
 	void Start () {
        _blueObjects = GameObject.FindGameObjectsWithTag("Blue").ToList();
         _redObjects = GameObject.FindGameObjectsWithTag("Red").ToList();
         _yellowObjects = GameObject.FindGameObjectsWithTag("Yellow").ToList();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        foreach(Transform child in player.transform)
+        {
+            var particleSystem = child.GetComponent<ParticleSystem>();
+            if (particleSystem)
+                _playerColorObjects.Add(child.gameObject);
+        }
        }
 	
 	void Update () {
@@ -133,6 +149,25 @@ public class GlobalObjectUpdating : MonoBehaviour {
     public void AddBlue(GameObject itemToAdd)
     {
         _yellowObjects.Add(itemToAdd);
+    }
+
+    private void ChangePlayerColor(Colors colorToChangeTo)
+    {
+        foreach (var item in _playerColorObjects)
+        {
+            switch (item.name)
+            {
+                case "BlueColor":
+                    item.SetActive(colorToChangeTo == Colors.blue);
+                    break;
+                case "RedColor":
+                    item.SetActive(colorToChangeTo == Colors.red);
+                    break;
+                case "Yellow":
+                    item.SetActive(colorToChangeTo == Colors.yellow);
+                    break;
+            }
+        }
     }
 }
 
