@@ -27,6 +27,9 @@ public class Character : MonoBehaviour
         if (other.name.Equals("Bullet(Clone)"))
         {
 			Destroy(other.gameObject);
+			var clone  = Instantiate(GameObject.Find("BulletHitJuice"),other.transform.position,other.transform.rotation);
+			Destroy(clone, .1f);
+			//this.audioS.PlayOneShot(Audio);
 			//AudioSource[] audios = _player.GetComponents<AudioSource>();
 			//audios[2];
             Health -= 10.01f;//10 shots to kill

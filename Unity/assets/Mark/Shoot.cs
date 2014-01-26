@@ -34,7 +34,7 @@ public class Shoot : MonoBehaviour
 				lastSoundtime = 0;
 				this.audioS.PlayOneShot(Audio);
 			}
-			Destroy(clone, .5f);
+			Destroy(clone, .8f);
 		}
 		
 	}
