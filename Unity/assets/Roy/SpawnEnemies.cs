@@ -12,10 +12,6 @@ public class SpawnEnemies : MonoBehaviour
     public Transform[] enemyPrefab;
     private Transform Character;
     private int enemiesLeft;
-    // Use this for initialization
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -52,6 +48,7 @@ public class SpawnEnemies : MonoBehaviour
             randomPointInsideCircle = Random.insideUnitCircle * _maxRangeRadius;
             possibleNewLocation = new Vector3(this.transform.position.x + randomPointInsideCircle.x, this.transform.position.y, this.transform.position.z + randomPointInsideCircle.y);
         }
+        Debug.Log("spawning enemies");
         //var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length - 1);
         Instantiate(enemyPrefab[0], possibleNewLocation, transform.rotation);
     }
