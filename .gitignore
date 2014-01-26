@@ -1,3 +1,4 @@
 *.csproj
 *.unityproj
 *.sln
+Unity/Temp/

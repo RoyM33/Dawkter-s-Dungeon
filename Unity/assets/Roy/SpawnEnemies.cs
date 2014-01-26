@@ -10,42 +10,63 @@ public class SpawnEnemies : MonoBehaviour
     private float _timeElapsed = 0;
     public float _maxRangeRadius;
     public float _minRangeRadius;
+    public bool startImmediatly = false;
+    public bool alwaysSpawn = false;
     private bool started;
     public GameObject[] enemyPrefab;
     private Transform Character;
     private int enemiesLeft;
     public GameObject Prize;
-    private List<GameObject> enemiesSpawned;
+    private List<GameObject> enemiesSpawned =  new List<GameObject>();
+
+    void Start()
+    {
+        started = startImmediatly;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (started)
         {
-
-            if (enemiesLeft > 0)
+            if (!alwaysSpawn)
             {
-                _timeElapsed += Time.deltaTime;
-                if (_timeElapsed >= _spawnDelayTime)
+                if (enemiesLeft > 0)
                 {
-                    enemiesLeft--;
-                    SpawnEnemy();
-                    _timeElapsed = 0;
-                    _spawnDelayTime = Random.Range(spawnTimerBetweenStart, spawnTimerBetweenEnd);
+                    SpawnEnemiesWithTimer();
+                }
+                else
+                {
+                    foreach (var enemy in enemiesSpawned.ToArray())
+                    {
+                        if (enemy == null)
+                            enemiesSpawned.Remove(enemy);
+                    }
+                    if (enemiesSpawned.Count <= 0)
+                    {
+                        started = false;
+                        if (Prize)
+                            Instantiate(Prize, new Vector3(this.transform.position.x, 1, this.transform.position.z), this.transform.rotation);
+                    }
                 }
             }
             else
             {
-                if (enemiesSpawned == null)
-                {
-                    Debug.Log("AllDead");
-                }
-               // var enemies = GameObject.FindWithTag("Enemy");
-                //if (enemies == null)
-                //{
-                 //   started = false;
-               // }
+                SpawnEnemiesWithTimer();
             }
+        }
+    }
+
+    private void SpawnEnemiesWithTimer()
+    {
+        _timeElapsed += Time.deltaTime;
+        if (_timeElapsed >= _spawnDelayTime)
+        {
+            enemiesLeft--;
+            SpawnEnemy();
+            _timeElapsed = 0;
+            _spawnDelayTime = Random.Range(spawnTimerBetweenStart, spawnTimerBetweenEnd);
+            Debug.Log(_spawnDelayTime);
         }
     }
 
@@ -84,15 +105,7 @@ public class SpawnEnemies : MonoBehaviour
 
     void OnGUI()
     {
-        if (!started)
-        {
-            if (GUI.Button(new Rect(0, 100, 200, 200), "Begin"))
-            {
-                enemiesLeft = 20;
-                started = true;
-            }
-        }
-        else
+        if (started && !alwaysSpawn)
         {
             GUI.Label(new Rect(50, 50, Screen.width / 2, Screen.height / 2), enemiesLeft.ToString());
         }
