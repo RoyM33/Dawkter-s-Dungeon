@@ -12,6 +12,7 @@ public class ShootEnemy : MonoBehaviour
 	public AudioClip Audio;
 	public AudioSource audioS;
 	public GameObject _gunUser;
+	public Light scaryLight;
 	
 	// Use this for initialization
 	void Start()
@@ -24,7 +25,7 @@ public class ShootEnemy : MonoBehaviour
 	{
 		lastfiretime += Time.deltaTime;
 		lastSoundtime += Time.deltaTime;
-		if(lastfiretime > timebetweenshots && Input.GetButton("Fire1") == true)
+		if(lastfiretime > timebetweenshots && scaryLight.intensity >= 8)
 		{
 			lastfiretime = 0;
 			var clone  = Instantiate(Bullet,_gunUser.transform.position,_gunUser.transform.rotation);
