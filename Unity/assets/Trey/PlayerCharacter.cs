@@ -9,10 +9,14 @@ public class PlayerCharacter : Character
 
     public float TopDownSpeed = 15;
     public float FirstPersonSpeed = 8;
-
+    private GUIStyle style = new GUIStyle();
     // Use this for initialization
     void Start()
     {
+        Texture2D healthBackground = new Texture2D(1, 1);
+        healthBackground.SetPixel(1, 1, Color.red);
+        healthBackground.Apply();
+        style.normal.background = healthBackground;
         _motor = this.GetComponent<CharacterMotor>();
     }
 
@@ -47,7 +51,7 @@ public class PlayerCharacter : Character
 
     void OnGUI()
     {
-        GUI.Box(new Rect(0, 0, Screen.width * Health / 100, 30), Health.ToString());
+        GUI.Box(new Rect(0, 0, Screen.width * Health / 100, 30), Health.ToString(), style);
     }
 
 	void OnTriggerEnter(Collider other)
@@ -55,7 +59,6 @@ public class PlayerCharacter : Character
 		if (other.name.Equals("Bullet(Clone)"))
 		{
 			Health -= 8;//10 shots to kill
-
 		}
 	}
 
