@@ -194,7 +194,6 @@ public class GlobalObjectUpdating : MonoBehaviour {
                     item.SetActive(colorToChangeTo == Colors.normal);
                     break;
             }
-            Debug.Log(item.name);
         }
     }
 }

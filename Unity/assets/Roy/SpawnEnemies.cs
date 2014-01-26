@@ -66,7 +66,6 @@ public class SpawnEnemies : MonoBehaviour
             SpawnEnemy();
             _timeElapsed = 0;
             _spawnDelayTime = Random.Range(spawnTimerBetweenStart, spawnTimerBetweenEnd);
-            Debug.Log(_spawnDelayTime);
         }
     }
 
@@ -89,7 +88,6 @@ public class SpawnEnemies : MonoBehaviour
         var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length);
         
         GameObject spawnedEnemy = Instantiate(enemyPrefab[enemyToSpawnIndex], possibleNewLocation, transform.rotation) as GameObject;
-        Debug.Log(spawnedEnemy);
         enemiesSpawned.Add(spawnedEnemy);        
     }
 
