@@ -49,6 +49,8 @@ public class Game : MonoBehaviour
         Time.timeScale = 0;
         IntroStart = Time.realtimeSinceStartup;
 
+        Screen.showCursor = false;
+
     }
 
     // Update is called once per frame
