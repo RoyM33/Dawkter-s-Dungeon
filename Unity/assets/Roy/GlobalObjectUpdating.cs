@@ -15,7 +15,6 @@ public class GlobalObjectUpdating : MonoBehaviour {
             if (normalColor)
             {
                 normalColor.SetActive(false);
-                _playerColorObjects.Remove(normalColor);
             }
 
             startBlinking = true;
@@ -26,7 +25,7 @@ public class GlobalObjectUpdating : MonoBehaviour {
                 case Colors.red:
                     foreach (var item in _blueObjects)
                     {
-                        AdjustMeshToTrue(item);
+                            AdjustMeshToTrue(item);
                         item.GetComponent<BoxCollider>().isTrigger = false;
                     }
                     foreach (var item in _yellowObjects)
@@ -54,6 +53,23 @@ public class GlobalObjectUpdating : MonoBehaviour {
                         item.GetComponent<BoxCollider>().isTrigger = false;
                     }
                     foreach (var item in _redObjects)
+                    {
+                        AdjustMeshToTrue(item);
+                        item.GetComponent<BoxCollider>().isTrigger = false;
+                    }
+                    break;
+                case Colors.normal:
+                    foreach (var item in _blueObjects)
+                    {
+                        AdjustMeshToTrue(item);
+                        item.GetComponent<BoxCollider>().isTrigger = false;
+                    }
+                    foreach (var item in _redObjects)
+                    {
+                        AdjustMeshToTrue(item);
+                        item.GetComponent<BoxCollider>().isTrigger = false;
+                    }
+                    foreach (var item in _yellowObjects)
                     {
                         AdjustMeshToTrue(item);
                         item.GetComponent<BoxCollider>().isTrigger = false;
@@ -101,14 +117,14 @@ public class GlobalObjectUpdating : MonoBehaviour {
                     case Colors.blue:
                         foreach (var item in _blueObjects)
                         {
-                            AdjustMeshToOpposite(item);
+                            AdjustMeshToOpposite(item);                            
                             item.GetComponent<BoxCollider>().isTrigger = true;
                         }
                         break;
                     case Colors.yellow:
                         foreach (var item in _yellowObjects)
                         {
-                            AdjustMeshToOpposite(item);
+                            AdjustMeshToOpposite(item);                            
                             item.GetComponent<BoxCollider>().isTrigger = true;
                         }
                         break;
@@ -122,6 +138,8 @@ public class GlobalObjectUpdating : MonoBehaviour {
 
     private static void AdjustMeshToTrue(GameObject item)
     {
+        if (item.name == "Entrance")
+            return;
         var mesh = item.GetComponent<MeshRenderer>();
         if (mesh)
         {
@@ -131,6 +149,12 @@ public class GlobalObjectUpdating : MonoBehaviour {
 
     private static void AdjustMeshToOpposite(GameObject item)
     {
+        if (item.name == "Entrance")
+        {
+            var trapDoor = item.GetComponent<TrapDoor>();
+            if(!trapDoor.activated)
+                return;
+        }
         var mesh = item.GetComponent<MeshRenderer>();
         if (mesh)
         {
@@ -166,7 +190,11 @@ public class GlobalObjectUpdating : MonoBehaviour {
                 case "Yellow":
                     item.SetActive(colorToChangeTo == Colors.yellow);
                     break;
+                case "NormalColor":
+                    item.SetActive(colorToChangeTo == Colors.normal);
+                    break;
             }
+            Debug.Log(item.name);
         }
     }
 }
@@ -174,5 +202,6 @@ public class GlobalObjectUpdating : MonoBehaviour {
 public enum Colors {
     red,
     blue,
-    yellow
+    yellow,
+    normal
 }

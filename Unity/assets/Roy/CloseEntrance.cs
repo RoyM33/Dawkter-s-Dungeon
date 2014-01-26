@@ -3,13 +3,10 @@ using System.Collections;
 
 public class CloseEntrance : MonoBehaviour {
 
-    private BoxCollider parentBox;
-    private MeshRenderer parentMesh;
+    private TrapDoor parentDoor;
 	// Use this for initialization
 	void Start () {
-        var parent = this.transform.parent;
-        parentBox = parent.GetComponent<BoxCollider>();
-        parentMesh = parent.GetComponent<MeshRenderer>();
+        parentDoor = this.transform.parent.GetComponent<TrapDoor>();
 	}
 	
 	// Update is called once per frame
@@ -21,8 +18,9 @@ public class CloseEntrance : MonoBehaviour {
     {
         if (objectColliding.tag == "Player")
         {
-            parentBox.enabled = true;
-            parentMesh.enabled = true;
+            GlobalObjectUpdating globalupdater = GameObject.FindObjectOfType<GlobalObjectUpdating>();
+            globalupdater.currentColor = Colors.normal;
+            parentDoor.activated = true;
             GameObject.Destroy(this.gameObject, 1);
         }
     }
