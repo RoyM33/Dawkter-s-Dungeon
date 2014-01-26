@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Character : MonoBehaviour
 {
-
+	public Light scarylight;
     public float Health = 100;
 
     // Use this for initialization

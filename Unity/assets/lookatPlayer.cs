@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class lookatPlayer : MonoBehaviour {
-	
-	public Transform lookatTarget;
 	// Use this for initialization
+	private Transform lookatTarget;
 	void Start () {
 		lookatTarget = GameObject.FindWithTag("Player").transform;
 	}
