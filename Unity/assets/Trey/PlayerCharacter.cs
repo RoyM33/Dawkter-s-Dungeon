@@ -23,6 +23,12 @@ public class PlayerCharacter : Character
     // Update is called once per frame
     void Update()
     {
+        if (Health <= 0)
+        {
+            this.GetComponent<CharacterMotor>().enabled = false;
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (ViewOption == PlayerViewOptions.TopDown)

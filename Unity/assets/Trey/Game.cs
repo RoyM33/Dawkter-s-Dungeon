@@ -68,9 +68,13 @@ public class Game : MonoBehaviour
 
 
             case GameState.InProgress:
+                if (gameover)
+                    return;
+
                 if (MainCharacter.Health <= 0)
                 {
-                    _gameState = GameState.Lose;
+                    gameover = true;
+                    StartCoroutine(WaitAndLose());
                     audio.PlayOneShot(_onLoseSound);
                 }
 
@@ -83,9 +87,9 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    if (!won && Boss.Health <= 0)
+                    if (Boss.Health <= 0)
                     {
-                        won = true;
+                        gameover = true;
                         StartCoroutine(WaitAndWin());
                     }
                 }
@@ -104,13 +108,22 @@ public class Game : MonoBehaviour
         }
     }
 
-    private bool won = false;
+    private bool gameover = false;
 
     IEnumerator WaitAndWin()
     {
         yield return new WaitForSeconds(2);
 
         _gameState = GameState.Win;
+        Time.timeScale = 0;
+    }
+
+
+    IEnumerator WaitAndLose()
+    {
+        yield return new WaitForSeconds(2);
+
+        _gameState = GameState.Lose;
         Time.timeScale = 0;
     }
 
