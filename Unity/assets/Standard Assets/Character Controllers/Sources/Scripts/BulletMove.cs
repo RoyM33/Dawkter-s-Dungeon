@@ -5,7 +5,7 @@ public class BulletMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rigidbody.AddForce(this.transform.forward * 4000);
+		rigidbody.AddForce(this.transform.forward * 400);
 	}
 
 }
