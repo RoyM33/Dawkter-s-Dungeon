@@ -15,7 +15,17 @@ public class StartSpawning : MonoBehaviour {
         {
             _spawnEnemies = spawnEnemiesGO.GetComponent<SpawnEnemies>();
             if (_spawnEnemies == null)
-                Debug.Log("The attached Object does not contation Spawn Enemies");
+            {
+                foreach (Transform child in spawnEnemiesGO.transform)
+                {
+                    var otherSpawnEnemies = child.GetComponent<SpawnEnemies>();
+                    if (otherSpawnEnemies != null)
+                    {
+                        _spawnEnemies = otherSpawnEnemies;
+                        break;
+                    }
+                }
+            }
         }
 	}
 

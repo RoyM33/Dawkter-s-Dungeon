@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class SpawnEnemies : MonoBehaviour
     public float _maxRangeRadius;
     public float _minRangeRadius;
     private bool started;
-    public Transform[] enemyPrefab;
+    public GameObject[] enemyPrefab;
     private Transform Character;
     private int enemiesLeft;
+    public GameObject Prize;
+    private List<GameObject> enemiesSpawned;
 
     // Update is called once per frame
     void Update()
@@ -33,10 +36,15 @@ public class SpawnEnemies : MonoBehaviour
             }
             else
             {
-                var enemies = GameObject.FindWithTag("Enemy");
-                if (enemies == null)
-                    started = false;
-                    //You win
+                if (enemiesSpawned == null)
+                {
+                    Debug.Log("AllDead");
+                }
+               // var enemies = GameObject.FindWithTag("Enemy");
+                //if (enemies == null)
+                //{
+                 //   started = false;
+               // }
             }
         }
     }
@@ -57,9 +65,11 @@ public class SpawnEnemies : MonoBehaviour
             randomPointInsideCircle = Random.insideUnitCircle * _maxRangeRadius;
             possibleNewLocation = new Vector3(this.transform.position.x + randomPointInsideCircle.x, this.transform.position.y, this.transform.position.z + randomPointInsideCircle.y);
         }
-        Debug.Log("spawning enemies");
-        var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length - 1);
-        Instantiate(enemyPrefab[0], possibleNewLocation, transform.rotation);
+        var enemyToSpawnIndex = Random.Range(0, enemyPrefab.Length);
+        
+        GameObject spawnedEnemy = Instantiate(enemyPrefab[enemyToSpawnIndex], possibleNewLocation, transform.rotation) as GameObject;
+        Debug.Log(spawnedEnemy);
+        enemiesSpawned.Add(spawnedEnemy);        
     }
 
     private bool EnemyIsInMinimumRange(Vector3 randomPointInsideCircle)
@@ -95,7 +105,7 @@ public class SpawnEnemies : MonoBehaviour
 
         for (int i = 0; i < 361; i++)
         {
-            var position = new Vector3(transform.position.x + _minRangeRadius * Mathf.Cos(Mathf.Deg2Rad * i), 1, transform.position.z + _minRangeRadius * Mathf.Sin(Mathf.Deg2Rad * i));
+            var position = new Vector3(transform.position.x + _minRangeRadius * Mathf.Cos(Mathf.Deg2Rad * i), transform.position.y, transform.position.z + _minRangeRadius * Mathf.Sin(Mathf.Deg2Rad * i));
 
             if (lastposition != Vector3.zero)
                 Gizmos.DrawLine(lastposition, position);
@@ -105,7 +115,7 @@ public class SpawnEnemies : MonoBehaviour
         Gizmos.color = Color.red;
         for (int i = 0; i < 361; i++)
         {
-            var position = new Vector3(transform.position.x + _maxRangeRadius * Mathf.Cos(Mathf.Deg2Rad * i), 1, transform.position.z + _maxRangeRadius * Mathf.Sin(Mathf.Deg2Rad * i));
+            var position = new Vector3(transform.position.x + _maxRangeRadius * Mathf.Cos(Mathf.Deg2Rad * i), transform.position.y, transform.position.z + _maxRangeRadius * Mathf.Sin(Mathf.Deg2Rad * i));
 
             if (lastposition != Vector3.zero)
                 Gizmos.DrawLine(lastposition, position);
